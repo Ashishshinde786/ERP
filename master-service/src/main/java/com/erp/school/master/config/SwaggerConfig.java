@@ -1,0 +1,20 @@
+package com.erp.school.master.config;
+ 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+ 
+@Configuration
+public class SwaggerConfig {
+    @Bean
+    public OpenAPI openAPI() {
+        return new OpenAPI().info(new Info()
+        		.title("Master Service API")
+        	   .description("Reference/lookup data (MasterType + MasterData).\n\n" +
+                "Direct: http://localhost:8082/swagger-ui.html")
+            .version("1.0.0")
+            .contact(new Contact().name("ERP Team").email("admin@school.com")));
+    }
+}
