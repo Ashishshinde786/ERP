@@ -10,7 +10,6 @@ public class LoginResponse {
     private String role;
     private Long institutionId;
 
-    // Constructor for success
     public LoginResponse(boolean success, String message,
                          Long userId, String username,
                          String email, String role,
@@ -24,7 +23,6 @@ public class LoginResponse {
         this.institutionId = institutionId;
     }
 
-    // Constructor for failure
     public LoginResponse(boolean success, String message) {
         this.success = success;
         this.message = message;

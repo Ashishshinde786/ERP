@@ -24,8 +24,6 @@ public class AdmissionService {
         this.studentRepository = studentRepository;
     }
 
-    // ======================== APPLY ========================
-
     @Transactional
     public AdmissionApplication apply(AdmissionRequest request) {
         AdmissionApplication application = new AdmissionApplication();
@@ -41,8 +39,6 @@ public class AdmissionService {
         return admissionRepository.save(application);
     }
 
-    // ======================== GET ALL ========================
-
     public List<AdmissionApplication> getAll() {
         return admissionRepository.findAll();
     }
@@ -54,8 +50,6 @@ public class AdmissionService {
     public List<AdmissionApplication> getByAcademicYear(String academicYear) {
         return admissionRepository.findByAcademicYear(academicYear);
     }
-
-    // ======================== APPROVE ========================
 
     @Transactional
     public Student approve(Long id) {
@@ -89,8 +83,6 @@ public class AdmissionService {
         return studentRepository.save(student);
     }
 
-    // ======================== REJECT ========================
-
     @Transactional
     public AdmissionApplication reject(Long id) {
         AdmissionApplication application = admissionRepository.findById(id)
@@ -105,8 +97,6 @@ public class AdmissionService {
         application.setStatus(AdmissionStatus.REJECTED);
         return admissionRepository.save(application);
     }
-
-    // ======================== STUDENTS ========================
 
     public List<Student> getAllStudents() {
         return studentRepository.findAll();

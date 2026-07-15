@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = "com.erp.school.academic.repository")
 @EntityScan(basePackages = "com.erp.school.academic.entity")
 public class AcademicServiceApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(AcademicServiceApplication.class, args);
     }

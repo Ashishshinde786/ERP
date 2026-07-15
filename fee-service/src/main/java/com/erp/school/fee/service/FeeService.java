@@ -31,8 +31,6 @@ public class FeeService {
         this.paymentRepository = paymentRepository;
     }
 
-    // ======================== FEE STRUCTURE ========================
-
     @Transactional
     public FeeStructure createFeeStructure(FeeStructureRequest request) {
         FeeStructure feeStructure = new FeeStructure();
@@ -53,14 +51,24 @@ public class FeeService {
             .orElseThrow(() -> new RuntimeException("Fee structure not found: " + id));
     }
 
-    // ======================== ASSIGN FEE ========================
-
     @Transactional
     public StudentFee assignFee(AssignFeeRequest request) {
         FeeStructure feeStructure = feeStructureRepository
             .findById(request.getFeeStructureId())
             .orElseThrow(() -> new RuntimeException(
                 "Fee Structure not found: " + request.getFeeStructureId()));
+
+        boolean alreadyAssigned = studentFeeRepository
+            .findByStudentIdAndAcademicYear(request.getStudentId(), request.getAcademicYear())
+            .stream()
+            .anyMatch(sf -> sf.getFeeStructure() != null
+                && sf.getFeeStructure().getId().equals(feeStructure.getId()));
+
+        if (alreadyAssigned) {
+            throw new RuntimeException(
+                "Fee '" + feeStructure.getFeeName() + "' is already assigned to student "
+                + request.getStudentId() + " for year " + request.getAcademicYear());
+        }
 
         StudentFee studentFee = new StudentFee();
         studentFee.setStudentId(request.getStudentId());
@@ -73,8 +81,6 @@ public class FeeService {
 
         return studentFeeRepository.save(studentFee);
     }
-
-    // ======================== PAYMENT ========================
 
     @Transactional
     public Payment payFee(PaymentRequest request) {
@@ -120,8 +126,6 @@ public class FeeService {
 
         return paymentRepository.save(payment);
     }
-
-    // ======================== QUERIES ========================
 
     public List<StudentFee> getStudentFees(Long studentId) {
         return studentFeeRepository.findByStudentId(studentId);

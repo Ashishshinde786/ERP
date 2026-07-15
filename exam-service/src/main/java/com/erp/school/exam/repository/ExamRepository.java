@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ExamRepository extends JpaRepository<Exam, Long> {
-
     Optional<Exam> findByExamCode(String examCode);
-
     List<Exam> findByAcademicYear(String academicYear);
 }

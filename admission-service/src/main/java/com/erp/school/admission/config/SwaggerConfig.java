@@ -1,19 +1,19 @@
 package com.erp.school.admission.config;
- 
+
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
- 
+
 @Configuration
 public class SwaggerConfig {
     @Bean
     public OpenAPI openAPI() {
         return new OpenAPI().info(new Info()
-        		.title("Admission Service API")
-        	 .description("Applications, Approval, Student enrollment.\n\n" +
-       	                "Direct: http://localhost:8084/swagger-ui.html")
+                .title("Admission Service API")
+                .description("Applications, Approval, Student enrollment.\n\n" +
+                            "Direct: http://localhost:8084/swagger-ui.html")
             .version("1.0.0")
             .contact(new Contact().name("ERP Team").email("admin@school.com")));
     }

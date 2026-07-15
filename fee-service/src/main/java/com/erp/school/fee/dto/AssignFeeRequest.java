@@ -10,7 +10,7 @@ public class AssignFeeRequest {
     @NotNull(message = "Fee structure ID is required")
     private Long feeStructureId;
 
-    private String academicYear;   // e.g. "2024-25"
+    private String academicYear;
 
     public Long getStudentId() { return studentId; }
     public void setStudentId(Long studentId) { this.studentId = studentId; }

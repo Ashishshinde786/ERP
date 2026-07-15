@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = "com.erp.school.auth.repository")
 @EntityScan(basePackages = "com.erp.school.auth.entity")
 public class AuthServiceApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(AuthServiceApplication.class, args);
     }

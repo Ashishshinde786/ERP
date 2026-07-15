@@ -11,7 +11,7 @@ public class ExamRequest {
     @NotBlank(message = "Exam name is required")
     private String examName;
 
-    private String examType;       // UNIT_TEST, HALF_YEARLY, ANNUAL
+    private String examType;
     private String academicYear;
 
     @Positive(message = "Total marks must be positive")

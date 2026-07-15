@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/api/auth")
 @CrossOrigin(origins = "*")
 public class AuthController {
 
@@ -28,15 +28,13 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse<LoginResponse>> login(
+    public ResponseEntity<LoginResponse> login(
             @Valid @RequestBody LoginRequest request) {
         LoginResponse response = authService.login(request);
         if (!response.isSuccess()) {
-            return ResponseEntity.status(401)
-                .body(new ApiResponse<>(false, response.getMessage(), null));
+            return ResponseEntity.status(401).body(response);
         }
-        return ResponseEntity.ok(
-            new ApiResponse<>(true, response.getMessage(), response));
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/health")

@@ -9,9 +9,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class AuthService {
+
+    private static final Set<String> SELF_REGISTERABLE_ROLES = Set.of("STUDENT", "TEACHER", "STAFF");
+    private static final String DEFAULT_ROLE = "STUDENT";
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -37,7 +41,12 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setMobile(request.getMobile());
         user.setInstitutionId(request.getInstitutionId());
-        user.setRole(request.getRole() != null ? request.getRole() : "STUDENT");
+
+        String requestedRole = request.getRole() != null ? request.getRole().toUpperCase() : null;
+        String role = (requestedRole != null && SELF_REGISTERABLE_ROLES.contains(requestedRole))
+                ? requestedRole
+                : DEFAULT_ROLE;
+        user.setRole(role);
 
         userRepository.save(user);
         return "User registered successfully!";

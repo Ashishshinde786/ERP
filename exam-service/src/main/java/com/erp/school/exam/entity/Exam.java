@@ -9,7 +9,7 @@ public class Exam extends BaseEntity {
 
     private String examCode;
     private String examName;
-    private String examType;       // UNIT_TEST, HALF_YEARLY, ANNUAL
+    private String examType;
 
     @Column(name = "academic_year")
     private String academicYear;

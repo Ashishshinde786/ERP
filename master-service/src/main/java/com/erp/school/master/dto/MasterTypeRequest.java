@@ -1,13 +1,13 @@
 package com.erp.school.master.dto;
- 
+
 import jakarta.validation.constraints.NotBlank;
- 
+
 public class MasterTypeRequest {
     @NotBlank(message = "Code is required")
     private String code;
     @NotBlank(message = "Name is required")
     private String name;
- 
+
     public String getCode() { return code; }
     public void setCode(String code) { this.code = code; }
     public String getName() { return name; }
