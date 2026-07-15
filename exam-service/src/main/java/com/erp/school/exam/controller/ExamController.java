@@ -24,8 +24,6 @@ public class ExamController {
         this.examService = examService;
     }
 
-    // =================== EXAMS ===================
-
     @PostMapping
     public ResponseEntity<ApiResponse<Exam>> createExam(
             @Valid @RequestBody ExamRequest request) {
@@ -53,8 +51,6 @@ public class ExamController {
             new ApiResponse<>(true, "Success", examService.getExamsByYear(academicYear)));
     }
 
-    // =================== MARKS ===================
-
     @PostMapping("/marks")
     public ResponseEntity<ApiResponse<StudentMark>> addMark(
             @Valid @RequestBody StudentMarkRequest request) {
@@ -78,8 +74,6 @@ public class ExamController {
         return ResponseEntity.ok(
             new ApiResponse<>(true, "Success", examService.getMarksByExam(examId)));
     }
-
-    // =================== RESULTS ===================
 
     @PostMapping("/results/generate/{studentId}/{examId}")
     public ResponseEntity<ApiResponse<Result>> generateResult(
@@ -111,8 +105,6 @@ public class ExamController {
         return ResponseEntity.ok(
             new ApiResponse<>(true, "Success", examService.getAllResults()));
     }
-
-    // =================== HEALTH ===================
 
     @GetMapping("/health")
     public ResponseEntity<String> health() {

@@ -23,7 +23,7 @@ public class StudentFee extends BaseEntity {
     @Column(name = "due_amount")
     private Double dueAmount;
 
-    private String status;   // UNPAID, PARTIAL, PAID
+    private String status;
 
     @Column(name = "academic_year")
     private String academicYear;

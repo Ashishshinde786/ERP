@@ -8,34 +8,18 @@ import jakarta.persistence.*;
 public class MasterData extends BaseEntity {
 
     private String code;
-
     private String value;
 
     @ManyToOne
     @JoinColumn(name = "master_type_id")
     private MasterType masterType;
 
-    public String getCode() {
-        return code;
-    }
+    public String getCode() { return code; }
+    public void setCode(String code) { this.code = code; }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+    public String getValue() { return value; }
+    public void setValue(String value) { this.value = value; }
 
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public MasterType getMasterType() {
-        return masterType;
-    }
-
-    public void setMasterType(MasterType masterType) {
-        this.masterType = masterType;
-    }
+    public MasterType getMasterType() { return masterType; }
+    public void setMasterType(MasterType masterType) { this.masterType = masterType; }
 }

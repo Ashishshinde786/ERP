@@ -11,8 +11,8 @@ public class FeeStructure extends BaseEntity {
     private String feeCode;
     private String feeName;
     private Double amount;
-    private String feeType;   // TUITION, EXAM, LIBRARY, SPORT
-    private Long classId;     // null = all classes
+    private String feeType;
+    private Long classId;
 
     public String getFeeCode() { return feeCode; }
     public void setFeeCode(String feeCode) { this.feeCode = feeCode; }

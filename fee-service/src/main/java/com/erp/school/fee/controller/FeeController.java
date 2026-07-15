@@ -25,8 +25,6 @@ public class FeeController {
         this.feeService = feeService;
     }
 
-    // =================== FEE STRUCTURE ===================
-
     @PostMapping("/structures")
     public ResponseEntity<ApiResponse<FeeStructure>> createFeeStructure(
             @Valid @RequestBody FeeStructureRequest request) {
@@ -48,8 +46,6 @@ public class FeeController {
             new ApiResponse<>(true, "Success", feeService.getFeeStructureById(id)));
     }
 
-    // =================== ASSIGN FEE ===================
-
     @PostMapping("/assign")
     public ResponseEntity<ApiResponse<StudentFee>> assignFee(
             @Valid @RequestBody AssignFeeRequest request) {
@@ -60,8 +56,6 @@ public class FeeController {
                 ". Due: \u20b9" + saved.getDueAmount(), saved));
     }
 
-    // =================== PAYMENT ===================
-
     @PostMapping("/pay")
     public ResponseEntity<ApiResponse<Payment>> payFee(
             @Valid @RequestBody PaymentRequest request) {
@@ -70,8 +64,6 @@ public class FeeController {
             new ApiResponse<>(true,
                 "Payment received. Receipt: " + payment.getReceiptNo(), payment));
     }
-
-    // =================== QUERIES ===================
 
     @GetMapping("/student/{studentId}")
     public ResponseEntity<ApiResponse<List<StudentFee>>> getStudentFees(

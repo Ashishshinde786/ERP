@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface FeeStructureRepository extends JpaRepository<FeeStructure, Long> {
-
     Optional<FeeStructure> findByFeeCode(String feeCode);
-
     List<FeeStructure> findByClassId(Long classId);
 }

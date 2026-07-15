@@ -29,8 +29,6 @@ public class ExamService {
         this.resultRepository = resultRepository;
     }
 
-    // ======================== EXAM ========================
-
     @Transactional
     public Exam createExam(ExamRequest request) {
         if (examRepository.findByExamCode(request.getExamCode()).isPresent()) {
@@ -58,8 +56,6 @@ public class ExamService {
     public List<Exam> getExamsByYear(String academicYear) {
         return examRepository.findByAcademicYear(academicYear);
     }
-
-    // ======================== MARKS ========================
 
     @Transactional
     public StudentMark addMark(StudentMarkRequest request) {
@@ -91,8 +87,6 @@ public class ExamService {
         return studentMarkRepository.findByExamId(examId);
     }
 
-    // ======================== RESULT ========================
-
     @Transactional
     public Result generateResult(Long studentId, Long examId) {
         List<StudentMark> marks = studentMarkRepository
@@ -119,9 +113,8 @@ public class ExamService {
         boolean isPassed = exam.getPassingMarks() == null ||
             (totalObtained / marks.size()) >= exam.getPassingMarks();
 
-        // Upsert: update existing result or create new one
         Result result = resultRepository
-            .findByStudentIdAndExam_Id(studentId, examId)   // FIXED
+            .findByStudentIdAndExam_Id(studentId, examId)
             .orElse(new Result());
 
         result.setStudentId(studentId);
@@ -153,8 +146,6 @@ public class ExamService {
     public List<Result> getAllResults() {
         return resultRepository.findAll();
     }
-
-    // ======================== PRIVATE HELPERS ========================
 
     private String calculateGrade(double percentage) {
         if (percentage >= 90) return "A+";

@@ -16,8 +16,8 @@ public class FeeStructureRequest {
     @Positive(message = "Amount must be positive")
     private Double amount;
 
-    private String feeType;   // TUITION, EXAM, LIBRARY, SPORT etc.
-    private Long classId;     // null = applies to all classes
+    private String feeType;
+    private Long classId;
 
     public String getFeeCode() { return feeCode; }
     public void setFeeCode(String feeCode) { this.feeCode = feeCode; }

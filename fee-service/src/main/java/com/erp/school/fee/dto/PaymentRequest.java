@@ -12,9 +12,8 @@ public class PaymentRequest {
     @Positive(message = "Amount must be positive")
     private Double amount;
 
-    private String paymentMode;   // CASH, CHEQUE, UPI, ONLINE
+    private String paymentMode;
 
-    // Getters and Setters
     public Long getStudentFeeId() { return studentFeeId; }
     public void setStudentFeeId(Long studentFeeId) { this.studentFeeId = studentFeeId; }
 

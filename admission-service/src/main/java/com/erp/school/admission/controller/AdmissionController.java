@@ -22,8 +22,6 @@ public class AdmissionController {
         this.service = service;
     }
 
-    // =================== APPLICATIONS ===================
-
     @PostMapping("/apply")
     public ResponseEntity<ApiResponse<AdmissionApplication>> apply(
             @Valid @RequestBody AdmissionRequest request) {
@@ -65,8 +63,6 @@ public class AdmissionController {
         return ResponseEntity.ok(
             new ApiResponse<>(true, "Application rejected", app));
     }
-
-    // =================== STUDENTS ===================
 
     @GetMapping("/students")
     public ResponseEntity<ApiResponse<List<Student>>> getAllStudents() {
