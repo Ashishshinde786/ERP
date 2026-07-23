@@ -5,6 +5,7 @@ import com.erp.school.auth.dto.LoginResponse;
 import com.erp.school.auth.dto.RegisterRequest;
 import com.erp.school.auth.entity.AppUser;
 import com.erp.school.auth.repository.UserRepository;
+import com.erp.school.common.security.JwtUtil;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +20,14 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
     public AuthService(UserRepository userRepository,
-                       PasswordEncoder passwordEncoder) {
+                       PasswordEncoder passwordEncoder,
+                       JwtUtil jwtUtil) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtUtil = jwtUtil;
     }
 
     public String register(RegisterRequest request) {
@@ -69,7 +73,7 @@ public class AuthService {
             return new LoginResponse(false, "Invalid password");
         }
 
-        return new LoginResponse(
+        LoginResponse response = new LoginResponse(
                 true,
                 "Login successful",
                 user.getId(),
@@ -78,5 +82,11 @@ public class AuthService {
                 user.getRole(),
                 user.getInstitutionId()
         );
+
+        response.setToken(jwtUtil.generateToken(
+                user.getId(), user.getEmail(), user.getRole(), user.getInstitutionId()
+        ));
+
+        return response;
     }
 }

@@ -9,6 +9,7 @@ public class LoginResponse {
     private String email;
     private String role;
     private Long institutionId;
+    private String token;
 
     public LoginResponse(boolean success, String message,
                          Long userId, String username,
@@ -35,4 +36,7 @@ public class LoginResponse {
     public String getEmail() { return email; }
     public String getRole() { return role; }
     public Long getInstitutionId() { return institutionId; }
+
+    public String getToken() { return token; }
+    public void setToken(String token) { this.token = token; }
 }
